@@ -1,0 +1,48 @@
+---
+- name: OSPF_ASYN_SYN
+  hosts: all
+  become: yes
+  
+  vars_files:
+    - defaults/main.yml
+ 
+  tasks:
+
+  - name: asynchronous routing
+    sysctl:
+      name: net.ipv4.conf.all.rp_filter
+      value: '0'
+      state: present
+  
+  - name: set up OSPF 
+    template:
+      src: ospf_files/frr_{{ansible_hostname}}.conf
+      dest: /etc/frr/frr.conf
+      owner: frr
+      group: frr
+      mode: 0640
+
+
+  - name: config router1
+    template:
+      src: ospf_files/frr_asyn.conf
+      dest: /etc/frr/frr.conf
+      owner: frr
+      group: frr
+      mode: 0640
+    when: (ansible_hostname == "router1")
+
+  - name: config router2
+    template:
+      src: ospf_files/frr_syn.conf
+      dest: /etc/frr/frr.conf
+      owner: frr
+      group: frr
+      mode: 0640
+    when: (ansible_hostname == "router2") and (symmetric_routing == true)
+
+  - name: restart FRR
+    service:
+      name: frr
+      state: restarted
+      enabled: true
