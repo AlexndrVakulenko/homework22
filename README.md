@@ -12,13 +12,17 @@ Vagrantfile собирает основной стенд с provision work_ospf.
 
 #### Настройка frr, маршрутизация: ####
 
-![Image alt](https://github.com/AlexndrVakulenko/homework26/blob/main/screenshots/01_ipa_srv_install.png)
+![Image alt](https://github.com/AlexndrVakulenko/homework22/blob/main/01_check_ospf1.png)
+
+
+![Image alt](https://github.com/AlexndrVakulenko/homework22/blob/main/02_check_ospf2.png)
+
 
 #### Ассиметричный роутинг: ####
 
-![Image alt]()
+![Image alt](https://github.com/AlexndrVakulenko/homework22/blob/main/03_asyn.png)
 
 
 #### Симметричный роутинг: ####
 
-![Image alt]()
+![Image alt](https://github.com/AlexndrVakulenko/homework22/blob/main/04_syn.png)
